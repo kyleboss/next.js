@@ -332,4 +332,27 @@ describe('Image Component Tests', () => {
       )
     })
   })
+  describe('Alt tag', () => {
+    beforeAll(async () => {
+      browser = await webdriver(appPort, '/')
+    })
+    afterAll(async () => {
+      browser = null
+    })
+    describe('when it is passed into Image', () => {
+      it('will be an attribute on the resulting img', async () => {
+        const altTag = await browser.elementById('alt-tag').getAttribute('alt')
+        expect(altTag).toBe('this is the alt tag')
+      })
+    })
+    describe('when it is not passed into Image', () => {
+      it('will be an empty string on the resulting img for a11y purposes', async () => {
+        // jest's `getAttribute` turns `null`s into `''`s, which is what we are trying to test.
+        const altTag = await browser.eval(
+          `document.getElementById('no-alt-tag').getAttribute('alt')`
+        )
+        expect(altTag).toBe('')
+      })
+    })
+  })
 })

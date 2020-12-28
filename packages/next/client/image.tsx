@@ -198,6 +198,12 @@ export default function Image({
     delete rest['layout']
   }
 
+  // Add an empty alt tag if one is not provided.
+  // This is so screen readers do not fallback to reading filenames.
+  if ('alt' in rest !== true) {
+    rest.alt = ''
+  }
+
   if (process.env.NODE_ENV !== 'production') {
     if (!src) {
       throw new Error(

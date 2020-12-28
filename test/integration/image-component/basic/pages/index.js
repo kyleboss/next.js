@@ -84,6 +84,21 @@ const Page = () => {
         width={16}
         height={16}
       />
+      <Image
+        id="alt-tag"
+        src="/foo.jpg"
+        loading="eager"
+        width={16}
+        height={16}
+        alt="this is the alt tag"
+      />
+      <Image
+        id="no-alt-tag"
+        src="/foo.jpg"
+        loading="eager"
+        width={16}
+        height={16}
+      />
       <Link href="/client-side">
         <a id="clientlink">Client Side</a>
       </Link>
